@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Programmers Guild — Human-Code Manifesto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --black: #0d0d0d;
+      --off-white: #f2f0eb;
+      --red: #c0392b;
+      --muted: #7a7872;
+      --border: #d8d5ce;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--off-white);
+      color: var(--black);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      border-bottom: 1.5px solid var(--black);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: var(--off-white);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-cta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 1.5px solid var(--black);
+      padding: 8px 18px;
+      text-decoration: none;
+      color: var(--black);
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-cta:hover { background: var(--black); color: var(--off-white); }
+
+    /* HERO */
+    .hero {
+      border-bottom: 1.5px solid var(--black);
+      padding: 80px 40px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+    }
+    .hero-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 9vw, 120px);
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      -webkit-text-stroke: 1.5px var(--black);
+      color: transparent;
+    }
+    .hero-sub {
+      font-size: 17px;
+      color: #3a3835;
+      max-width: 440px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .protest-box {
+      border: 1.5px solid var(--black);
+      padding: 28px;
+      background: var(--black);
+      color: var(--off-white);
+    }
+    .protest-box .label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+    .protest-box .detail {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 38px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .protest-box .sub-detail {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: #a0a09a;
+      margin-top: 12px;
+    }
+
+    /* TICKER */
+    .ticker {
+      overflow: hidden;
+      border-bottom: 1.5px solid var(--black);
+      border-top: 1.5px solid var(--black);
+      background: var(--black);
+      color: var(--off-white);
+      padding: 12px 0;
+      white-space: nowrap;
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 28s linear infinite;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+    .ticker-inner span { margin: 0 40px; color: var(--red); }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* WHY */
+    .why {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1.5px solid var(--black);
+    }
+    .why-item {
+      padding: 48px 36px;
+      border-right: 1.5px solid var(--black);
+    }
+    .why-item:last-child { border-right: none; }
+    .why-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 64px;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .why-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .why-body { font-size: 14px; color: #4a4845; line-height: 1.65; }
+
+    /* SIGNS */
+    .signs-section {
+      padding: 60px 40px;
+      border-bottom: 1.5px solid var(--black);
+    }
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .signs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .sign-card {
+      border: 1.5px solid var(--black);
+      padding: 28px 20px;
+      text-align: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      line-height: 1.2;
+      background: var(--black);
+      color: var(--off-white);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s;
+    }
+    .sign-card:nth-child(even) {
+      background: var(--off-white);
+      color: var(--black);
+    }
+    .sign-card:hover { transform: translateY(-3px); }
+    .sign-card .sign-num {
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      opacity: 0.3;
+    }
+    .sign-card:nth-child(5) { grid-column: span 1; }
+
+    /* MANIFESTO + FORM */
+    .manifesto-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1.5px solid var(--black);
+    }
+    .manifesto {
+      padding: 60px 40px;
+      border-right: 1.5px solid var(--black);
+    }
+    .manifesto h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+    .manifesto-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .manifesto-points li {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      font-size: 14px;
+      line-height: 1.65;
+      color: #3a3835;
+    }
+    .manifesto-points li::before {
+      content: "//";
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--red);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* FORM */
+    .form-side {
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .form-side h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .form-side p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .field label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+    .field input {
+      border: 1.5px solid var(--black);
+      background: transparent;
+      padding: 12px 14px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 15px;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.15s;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+    .field input:focus { border-color: var(--red); }
+    .field input::placeholder { color: var(--border); }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--black);
+      color: var(--off-white);
+      border: none;
+      padding: 16px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.15s;
+    }
+    .submit-btn:hover { background: var(--red); }
+
+    .success-msg {
+      display: none;
+      background: var(--black);
+      color: var(--off-white);
+      padding: 24px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+    .success-msg strong {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+
+    .member-count {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer .f-logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    footer .f-logo span { color: var(--red); }
+    footer .f-note {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--border);
+    }
+
+    @media (max-width: 820px) {
+      .hero, .manifesto-form { grid-template-columns: 1fr; }
+      .why { grid-template-columns: 1fr; }
+      .why-item { border-right: none; border-bottom: 1.5px solid var(--black); }
+      .signs-grid { grid-template-columns: 1fr 1fr; }
+      .manifesto { border-right: none; border-bottom: 1.5px solid var(--black); }
+      nav, .hero, .signs-section, .manifesto, .form-side, footer { padding-left: 20px; padding-right: 20px; }
+      .hero h1 { font-size: 64px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Programmers <span>Guild</span></div>
+    <a href="#signup" class="nav-cta">Sign the Manifesto →</a>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="hero-eyebrow">// Human-Code Manifesto — 2026</div>
+      <h1>We Build.<br>We <em>Resist.</em><br>We Code.</h1>
+      <p class="hero-sub">Engineers are fed up. Marketing cycles now outpace CI/CD pipelines. The pressure to "AI-ify" every button has created mountains of technical debt and a wave of job insecurity. This is our line in the sand.</p>
+    </div>
+    <div>
+      <div class="protest-box">
+        <div class="label">// Protest Details</div>
+        <div class="detail">April 1, 2026</div>
+        <div class="detail">12:00 PM</div>
+        <div class="detail">Spadina & King</div>
+        <div class="sub-detail">Toronto, Ontario · All engineers welcome</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker">
+    <div class="ticker-inner">
+      AI as a Tool, Not a Boss <span>✦</span> Error 404: Human Labor Not Found <span>✦</span> Software Engineer, Not Prompt Engineer <span>✦</span> AI for a 3-Day Work Week <span>✦</span> Hype-Driven Development Ends Now <span>✦</span> Ship Code, Not Buzzwords <span>✦</span> AI as a Tool, Not a Boss <span>✦</span> Error 404: Human Labor Not Found <span>✦</span> Software Engineer, Not Prompt Engineer <span>✦</span> AI for a 3-Day Work Week <span>✦</span> Hype-Driven Development Ends Now <span>✦</span> Ship Code, Not Buzzwords <span>✦</span>
+    </div>
+  </div>
+
+  <section class="why">
+    <div class="why-item">
+      <div class="why-num">01</div>
+      <div class="why-title">The Hype Problem</div>
+      <p class="why-body">VC-driven AI mandates trickle down as sprint tickets. "Add AI to the onboarding flow" isn't a product vision — it's marketing anxiety becoming your backlog.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">02</div>
+      <div class="why-title">Tools vs. Bosses</div>
+      <p class="why-body">We use AI every day. The issue isn't the tool — it's being replaced by it. Engineers shape systems. Systems shouldn't shape engineers out of a career.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">03</div>
+      <div class="why-title">Reclaim the Craft</div>
+      <p class="why-body">Code is judgment. Code is taste. Code is a human act. The guild exists to protect the dignity of software engineering against hype-cycle commodification.</p>
+    </div>
+  </section>
+
+  <section class="signs-section">
+    <div class="section-label">// Protest Signs</div>
+    <div class="signs-grid">
+      <div class="sign-card"><span class="sign-num">01</span>AI as a tool,<br>not a boss</div>
+      <div class="sign-card"><span class="sign-num">02</span>AI for a<br>3-day work week</div>
+      <div class="sign-card"><span class="sign-num">03</span>USA AI increases<br>reliance on Trump</div>
+      <div class="sign-card"><span class="sign-num">04</span>Error 404:<br>Human Labor<br>Not Found</div>
+      <div class="sign-card"><span class="sign-num">05</span>Software engineer,<br>not Prompt Engineer</div>
+      <div class="sign-card" style="background:var(--red);color:var(--off-white);">
+        <span class="sign-num" style="color:rgba(255,255,255,0.4);">06</span>
+        Spadina & King<br>April 1 · 12PM
+      </div>
+    </div>
+  </section>
+
+  <div class="manifesto-form" id="signup">
+    <div class="manifesto">
+      <h2>Human-Code<br>Manifesto</h2>
+      <ul class="manifesto-points">
+        <li>We distinguish between AI as a <strong>tool</strong> and AI as a <strong>replacement</strong>. One augments craft; the other erases it.</li>
+        <li>We reject hype-driven development. Features exist to solve real user problems, not to satisfy investor narratives.</li>
+        <li>We demand that AI productivity gains translate to <strong>better working conditions</strong> — not just higher output quotas.</li>
+        <li>We refuse to be called "Prompt Engineers." We are software engineers. Our expertise took years, not a ChatGPT subscription.</li>
+        <li>We will name and resist the political entanglements of AI infrastructure — including its concentration of power.</li>
+        <li>We stand for a future where technology serves humanity, with a 3-day work week as proof that it can.</li>
+        <li>We are the Programmers Guild. We build. We resist. <em>We code.</em></li>
+      </ul>
+    </div>
+
+    <div class="form-side">
+      <h2>Sign the<br>Manifesto</h2>
+      <p>// Join the guild. April 1 · 12PM · Spadina & King</p>
+
+      <div id="signup-form">
+        <div class="field">
+          <label>Your Name</label>
+          <input type="text" id="name" placeholder="Ada Lovelace" />
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="ada@guild.dev" />
+        </div>
+        <button class="submit-btn" onclick="handleSignup()">
+          Sign the Manifesto →
+        </button>
+        <div id="error-msg" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--red);margin-top:10px;display:none;"></div>
+      </div>
+
+      <div class="success-msg" id="success-msg">
+        <strong>You're In.</strong>
+        Welcome to the guild, <span id="success-name"></span>.<br>
+        See you April 1st at Spadina & King, 12PM.<br><br>
+        <span style="color:var(--muted);">// Spread the word. The movement needs engineers.</span>
+      </div>
+
+      <div class="member-count" id="member-count">// <span id="count-num">0</span> engineers have signed the manifesto</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="f-logo">Programmers <span>Guild</span> · Est. 2026</div>
+    <div class="f-note">// tools not bosses · spadina & king · april 1</div>
+  </footer>
+
+  <script>
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyCA1Ft01s6yvJKnBBxwxjuAjVEtCADB6jTypNf8bkb34NVQC8LZAhnV5--IqbDia_Qpg/exec';
+
+    let localCount = parseInt(localStorage.getItem('pg_count') || '0');
+    document.getElementById('count-num').textContent = localCount;
+
+    async function handleSignup() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const err = document.getElementById('error-msg');
+      const btn = document.querySelector('.submit-btn');
+
+      err.style.display = 'none';
+
+      if (!name) { err.textContent = '// Name required'; err.style.display = 'block'; return; }
+      if (!email || !email.includes('@')) { err.textContent = '// Valid email required'; err.style.display = 'block'; return; }
+
+      btn.textContent = '// Submitting...';
+      btn.disabled = true;
+
+      try {
+        await fetch(SHEET_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email })
+        });
+
+        localCount++;
+        localStorage.setItem('pg_count', localCount);
+        document.getElementById('signup-form').style.display = 'none';
+        document.getElementById('success-name').textContent = name.split(' ')[0];
+        document.getElementById('success-msg').style.display = 'block';
+        document.getElementById('count-num').textContent = localCount;
+
+      } catch(e) {
+        err.textContent = '// Network error. Please try again.';
+        err.style.display = 'block';
+        btn.textContent = 'Sign the Manifesto →';
+        btn.disabled = false;
+      }
+    }
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') handleSignup(); });
+    });
+  </script>
+
+</body>
+</html>
